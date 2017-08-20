@@ -1,0 +1,29 @@
+server:
+  port: 8765
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+zuul:
+  debug:
+    request: true
+
+  # Setup the necessary reverse proxy routes.
+  # Configured routes:
+  # 1) /config/** : Path redirecting the the config server microservice
+  # 2) /services/** : Path redirecting the the eureka REST APIs where the
+  #                   all the various microservice information lives (running services,
+  #                   ports, service ids, etc
+  routes:
+    config-server:
+      path: /config/**
+      serviceId: config-server
+
+ribbon:
+  eureka:
+    enabled: true

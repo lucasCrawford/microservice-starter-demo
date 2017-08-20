@@ -1,0 +1,38 @@
+version: '3.1'
+services:
+
+  discovery-service:
+    image: thorrism/discovery-service
+    ports:
+       - "8761:8761"
+
+  edge-server:
+    image: thorrism/edge-server
+    ports:
+      - "8765:8765"
+    links:
+     - discovery-service
+    environment:
+       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
+
+  config-server:
+      image: thorrism/config-server
+      ports:
+        - "9090"
+      links:
+       - discovery-service
+      environment:
+         EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
+
+# Example of setting up PostgreSQL in it's own docker image
+#  postgres:
+#    image: postgres:latest
+#    environment:
+#      POSTGRES_PASSWORD: postgres
+#      POSTGRES_USER: postgres
+#      POSTGRES_DB: postgres
+#    ports:
+#      - "5432:5432"
+#    volumes:
+#      - ./backups:/home/backups
+

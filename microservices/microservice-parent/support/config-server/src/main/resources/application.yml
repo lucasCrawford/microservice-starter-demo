@@ -1,0 +1,21 @@
+server:
+    port: 9090
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+spring:
+    cloud:
+        config:
+          server:
+            git:
+              uri: https://github.com/rpicloud/guide-cloud-config
+
+ribbon:
+  eureka:
+    enabled: true
