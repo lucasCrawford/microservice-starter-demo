@@ -4,6 +4,7 @@ eureka:
   instance:
     prefer-ip-address: true
     hostname: ${DOCKER_HOST:localhost}
+
   client:
     registerWithEureka: false
     fetchRegistry: false
