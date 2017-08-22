@@ -65,4 +65,4 @@ To scale the application, use the command-line tool `docker-compose scale <servi
 docker-compose scale edge-server 2
 ```
 
-This will set it up so any docker service with the name "edge-server" will have two containers created, both with their own internal IP address and ports on the machine it's hosted on. The discovery service (Eureka server) will how the internal ports to use in order to direct traffic accordingly (i.e. load-balancing)
+This will set it up so any docker service with the name "edge-server" will have two containers created, both with their own ports on the machine it's hosted on. The discovery service (Eureka server) will know how the internal ports are mapped in order to direct traffic accordingly (i.e. load-balancing)
