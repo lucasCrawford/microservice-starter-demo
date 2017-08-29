@@ -59,10 +59,10 @@ docker-compose up
 
 Now each microservice should be running as the logs from the terminal will indicate. Verify this by accessing `http://{DOCKER_HOST}:8671` where Eureka's homepage should be visible. All REST APIs for your other microservices will be accessible via `http://{DOCKER_HOST}:9090/my/rest/api/path` so long as you have mapped the URLpattern within the edge server properties, under zuul. 
 
-To scale the application, use the command-line tool `docker-compose scale <service-name> <# of copies>`. Do this before `docker-compose up`. Example:
+To scale the application, use the command-line tool `docker-compose scale <service-name>=<# of copies>`. Do this before `docker-compose up`. Example:
 
 ```
-docker-compose scale edge-server 2
+docker-compose scale edge-server=2
 ```
 
-This will set it up so any docker service with the name "edge-server" will have two containers created, both with their own ports on the machine it's hosted on. The discovery service (Eureka server) will know how the internal ports are mapped in order to direct traffic accordingly (i.e. load-balancing)
+This will set it up so any docker service with the name "edge-server" will have two containers created, both with their own ports on the machine it's hosted on. The discovery service (Eureka server) will know how the internal ports are mapped in order to direct traffic accordingly (i.e. load-balancing). You will need to enable dynamic port assignment to scale like this.
